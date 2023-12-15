@@ -113,13 +113,13 @@ export default function App() {
 
   return (
     <div className="App"> 
-      <div className='third' style={{ backgroundImage: `url(${imgArray[a]})`,
+      <div className='third' style={{ backgroundImage: `url(${imgArray[a]})`,backgroundSize: "cover",
   backgroundRepeat: 'no-repeat' }}>
         <p>{`A: ${counterA}`}</p></div>
-        <div className='third' style={{ backgroundImage: `url(${imgArray[b]})`,
+        <div className='third' style={{ backgroundImage: `url(${imgArray[b]})`,backgroundSize: "cover",
   backgroundRepeat: 'no-repeat' }}>
         <p>{`B: ${counterB}`}</p></div>
-        <div className='third' style={{ backgroundImage: `url(${imgArray[c]})`,
+        <div className='third' style={{ backgroundImage: `url(${imgArray[c]})`,backgroundSize: "cover",
   backgroundRepeat: 'no-repeat' }}>
         <p>{`C: ${counterC}`}</p></div>
     </div>
