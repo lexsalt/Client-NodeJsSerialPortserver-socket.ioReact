@@ -28,14 +28,28 @@ import W from "./img/W.jpg";
 import X from "./img/X.jpg";
 import Y from "./img/y.jpeg";
 import Z from "./img/z.jpeg";
+import fireHighSound from "./audio/fire-high.mp3";
+import fireLowSound from "./audio/fire-low.mp3";
 let a = 10
 let b = 10
 let c = 10
 let gameOver = false
-
+const fireHigh = new Audio(fireHighSound)
+const fireLow = new Audio(fireHighSound)
 let imgArray = [A,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z];
 
-export default function App() {
+function soundTrack (one, two, three) {
+  // console.log(one)
+  // console.log(two)
+  // console.log(three)
+  console.log((one+two+three)/3)
+  if (((one+two+three)/3) > 15) {
+    fireHigh.play()
+  } else if (((one+two+three)/3) > 15) {
+    fireHigh.pause()
+  }
+}
+export default function Game() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [counterA, setCounterA] = useState(10);
   const [counterB, setCounterB] = useState(10);
@@ -45,10 +59,10 @@ export default function App() {
   }
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log(imgArray.length)
-      console.log(`a: ${a}`)
-      console.log(`b: ${b}`)
-      console.log(`c: ${c}`)
+      // console.log(imgArray.length)
+      // console.log(`a: ${a}`)
+      // console.log(`b: ${b}`)
+      // console.log(`c: ${c}`)
       if (gameOver) {
         console.log("game over")
       } else if (!gameOver) {
@@ -88,6 +102,7 @@ export default function App() {
     }
   }
 
+
   useEffect(() => {
     function onConnect() {
       setIsConnected(true);
@@ -98,6 +113,7 @@ export default function App() {
     function onData(value) {
       // console.log(typeof(value))
       processData(value)
+      soundTrack(a,b,c)
       // setAge(a => a + 1);
     }
     socket.on('serialData', onData);
@@ -110,7 +126,7 @@ export default function App() {
       socket.off('disconnect', onDisconnect);
     };
   }, []);
-
+  soundTrack(a,b,c)  
   return (
     <div className="App"> 
       <div className='third' style={{ backgroundImage: `url(${imgArray[a]})`,backgroundSize: "cover",
